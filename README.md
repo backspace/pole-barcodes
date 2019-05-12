@@ -1,7 +1,6 @@
 # pole-barcodes
 
-This README outlines the details of collaborating on this Ember application.
-A short introduction of this app could easily go here.
+This is an experimental application to read barcodes on poles in Winnipeg.
 
 ## Prerequisites
 
