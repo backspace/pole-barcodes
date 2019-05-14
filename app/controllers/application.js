@@ -18,4 +18,8 @@ export default class ApplicationController extends Controller {
       this.error = e;
     })
   }
+
+  startVideo(video) {
+    video.play();
+  }
 }

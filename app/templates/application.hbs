@@ -3,7 +3,7 @@
 <button {{action "getUserMedia"}}>Request camera</button>
 
 {{#if this.camera}}
-  <video {{prop srcObject=this.camera}}></video>
+  <video autoplay playsinline muted {{prop srcObject=this.camera}} {{did-insert this.startVideo}}></video>
 {{/if}}
 
 {{#if this.error}}
