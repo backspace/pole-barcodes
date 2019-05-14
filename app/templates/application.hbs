@@ -7,7 +7,7 @@
 {{/if}}
 
 {{#if this.camera}}
-  <video id='video' autoplay playsinline muted {{prop srcObject=this.camera}} {{did-insert this.startVideo}}></video>
+  <video id='video' autoplay playsinline muted {{prop srcObject=this.camera}} {{did-insert (action this.startVideo)}}></video>
 
   <div id="interactive" class="viewport"></div>
 {{/if}}

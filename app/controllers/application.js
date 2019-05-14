@@ -26,6 +26,10 @@ export default class ApplicationController extends Controller {
   startVideo(video) {
     video.play();
     App.init();
+
+    Quagga.onDetected((result) => {
+      this.barcode = result.codeResult.code;
+    });
   }
 }
 
@@ -265,22 +269,5 @@ Quagga.onProcessed(function(result) {
       if (result.codeResult && result.codeResult.code) {
           Quagga.ImageDebug.drawPath(result.line, {x: 'x', y: 'y'}, drawingCtx, {color: 'red', lineWidth: 3});
       }
-  }
-});
-
-Quagga.onDetected(function(result) {
-  var code = result.codeResult.code;
-
-  if (App.lastResult !== code) {
-      App.lastResult = code;
-      // var $node = null, canvas = Quagga.canvas.dom.image;
-
-      var node = document.createElement('h4');
-      node.innerHTML = code;
-      document.body.appendChild(node);
-      // $node = $('<li><div class="thumbnail"><div class="imgWrapper"><img /></div><div class="caption"><h4 class="code"></h4></div></div></li>');
-      // $node.find("img").attr("src", canvas.toDataURL());
-      // $node.find("h4.code").html(code);
-      // $("#result_strip ul.thumbnails").prepend($node);
   }
 });
