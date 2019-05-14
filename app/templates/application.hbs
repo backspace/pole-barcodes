@@ -2,8 +2,14 @@
 
 <button {{action "getUserMedia"}}>Request camera</button>
 
+{{#if this.barcode}}
+  Found a barcode??? {{this.barcode}}
+{{/if}}
+
 {{#if this.camera}}
-  <video autoplay playsinline muted {{prop srcObject=this.camera}} {{did-insert this.startVideo}}></video>
+  <video id='video' autoplay playsinline muted {{prop srcObject=this.camera}} {{did-insert this.startVideo}}></video>
+
+  <div id="interactive" class="viewport"></div>
 {{/if}}
 
 {{#if this.error}}
