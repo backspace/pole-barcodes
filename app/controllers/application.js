@@ -12,20 +12,7 @@ export default class ApplicationController extends Controller {
   @tracked barcode;
 
   @action
-  getUserMedia() {
-    let constraints = {
-      video: { facingMode: 'environment' }
-    };
-
-    navigator.mediaDevices.getUserMedia(constraints).then(device => {
-      this.camera = device;
-    }).catch(e => {
-      this.error = e;
-    })
-  }
-
-  startVideo(video) {
-    video.play();
+  requestCamera() {
     App.init();
 
     Quagga.onDetected((result) => {

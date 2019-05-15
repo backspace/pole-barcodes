@@ -1,16 +1,12 @@
 {{outlet}}
 
-<button {{action "getUserMedia"}}>Request camera</button>
+<button {{action "requestCamera"}}>Request camera</button>
 
 {{#if this.barcode}}
   Found a barcode??? {{this.barcode}}
 {{/if}}
 
-{{#if this.camera}}
-  <video id='video' autoplay playsinline muted {{prop srcObject=this.camera}} {{did-insert (action this.startVideo)}}></video>
-
-  <div id="interactive" class="viewport"></div>
-{{/if}}
+<div id="interactive" class="viewport"></div>
 
 {{#if this.error}}
   An error occurred: {{this.error}}
