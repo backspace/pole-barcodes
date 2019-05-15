@@ -1,9 +1,10 @@
 /* eslint-disable no-console,no-redeclare */
-/* global Quagga */
 
 import Controller from '@ember/controller';
 import { tracked } from '@glimmer/tracking';
 import { action } from '@ember/object';
+
+import Quagga from 'quagga';
 
 export default class ApplicationController extends Controller {
   @tracked camera;

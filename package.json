@@ -45,6 +45,7 @@
     "eslint-plugin-ember": "^6.0.1",
     "eslint-plugin-node": "^8.0.1",
     "loader.js": "^4.7.0",
+    "quagga": "^0.12.1",
     "qunit-dom": "^0.8.0"
   },
   "engines": {
