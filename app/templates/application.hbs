@@ -8,4 +8,4 @@
   An error occurred: {{this.error}}
 {{/if}}
 
-<BarcodeReader @onBarcodeRead={{action (mut barcode)}} @onError={{action (mut error)}} />
+<BarcodeReader @onBarcodeRead={{action (mut this.barcode)}} @onError={{action (mut this.error)}} />
