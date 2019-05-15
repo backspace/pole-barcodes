@@ -1,13 +1,11 @@
 {{outlet}}
 
-<button {{action "requestCamera"}}>Request camera</button>
-
 {{#if this.barcode}}
   Found a barcode??? {{this.barcode}}
 {{/if}}
 
-<div id="interactive" class="viewport"></div>
-
 {{#if this.error}}
   An error occurred: {{this.error}}
 {{/if}}
+
+<BarcodeReader @onBarcodeRead={{action (mut barcode)}} @onError={{action (mut error)}} />
