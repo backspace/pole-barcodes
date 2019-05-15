@@ -15,7 +15,8 @@ export default class BarcodeReader extends Component {
               height: {min: 480},
               aspectRatio: {min: 1, max: 100},
               facingMode: "environment" // or user
-          }
+          },
+          target: this.camera
       },
       locator: {
           patchSize: "medium",
