@@ -2,3 +2,13 @@ video {
   max-width: 50%;
   display: block;
 }
+
+#interactive {
+  display: relative;
+}
+
+#interactive canvas {
+  position: absolute;
+  top: 0;
+  left: 0;
+}
