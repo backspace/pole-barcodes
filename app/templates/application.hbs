@@ -1,11 +1,1 @@
 {{outlet}}
-
-{{#if this.barcode}}
-  Found a barcode??? {{this.barcode}}
-{{/if}}
-
-{{#if this.error}}
-  An error occurred: {{this.error}}
-{{/if}}
-
-<BarcodeReader @onBarcodeRead={{action (mut this.barcode)}} @onError={{action (mut this.error)}} />
