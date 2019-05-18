@@ -1,0 +1,14 @@
+<table>
+  <thead>
+    <tr>
+      <th>barcode</th>
+    </tr>
+  </thead>
+  <tbody>
+    {{#each this.model as |pole|}}
+      <tr>
+        <td>{{pole.barcode}}</td>
+      </tr>
+    {{/each}}
+  </tbody>
+</table>

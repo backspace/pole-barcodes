@@ -8,6 +8,8 @@ const Router = EmberRouter.extend({
 
 Router.map(function() {
   this.route('scan');
+
+  this.route('poles');
 });
 
 export default Router;

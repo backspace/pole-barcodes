@@ -38,6 +38,7 @@
     "ember-export-application-global": "^2.0.0",
     "ember-load-initializers": "^2.0.0",
     "ember-maybe-import-regenerator": "^0.1.6",
+    "ember-pouch": "^6.0.0",
     "ember-prop-modifier": "^0.1.1",
     "ember-qunit": "^4.1.2",
     "ember-ref-modifier": "^0.1.2",

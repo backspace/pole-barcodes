@@ -27,6 +27,10 @@ module.exports = function(environment) {
       // Here you can pass flags/options to your application instance
       // when it is created
     },
+
+    emberPouch: {
+      localDb: 'pole-barcodes-development',
+    },
   };
 
   if (environment === 'development') {
@@ -47,10 +51,12 @@ module.exports = function(environment) {
 
     ENV.APP.rootElement = '#ember-testing';
     ENV.APP.autoboot = false;
+
+    ENV.emberPouch.localDb = 'pole-barcodes-test';
   }
 
   if (environment === 'production') {
-    //
+    ENV.emberPouch.localDb = 'pole-barcodes-production';
   }
 
   return ENV;
