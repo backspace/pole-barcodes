@@ -15,6 +15,20 @@
 
 <button onclick={{action "locate"}} class="bg-black text-white text-sm p-2" data-locate>Locate</button>
 
+{{#if this.latitude}}
+  a map?
+  <LeafletMap @lat={{this.latitude}} @lng={{this.longitude}} @zoom="15" class="w-64 h-64" as |layers|>
+    <layers.tile @url="https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}.png"/>
+
+    <layers.marker @lat={{this.latitude}} @lng={{this.longitude}} as |marker|>
+      <marker.popup>
+        You?
+      </marker.popup>
+    </layers.marker>
+
+  </LeafletMap>
+{{/if}}
+
 <BarcodeReader @onBarcodeRead={{action (mut this.barcode)}} @onError={{action (mut this.error)}} />
 
 <button onclick={{action "save"}} class="bg-black text-white text-sm p-2" data-save>Save</button>
