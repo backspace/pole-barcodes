@@ -25,6 +25,11 @@ export default class SyncController extends Controller {
 
     this.syncPromise = sourceDb.sync(destinationDb);
 
-    return yield this.syncPromise;
+    try {
+      return yield this.syncPromise;
+    } catch (e) {
+      e.handled = e;
+      throw e;
+    }
   }) sync;
 }

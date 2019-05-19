@@ -15,11 +15,15 @@
     <li>read: <span data-read>{{this.sync.last.value.push.docs_read}}</span></li>
     <li>written: <span data-written>{{this.sync.last.value.push.docs_written}}</span></li>
     <li>write failures: <span data-write-failures>{{this.sync.last.value.push.doc_write_failures}}</span></li>
+    <li>errors: {{this.sync.last.value.push.errors}}</li>
   </ul>
   <ul data-pull>
     <li>pull</li>
     <li>read: <span data-read>{{this.sync.last.value.pull.docs_read}}</span></li>
     <li>written: <span data-written>{{this.sync.last.value.pull.docs_written}}</span></li>
     <li>write failures: <span data-write-failures>{{this.sync.last.value.pull.doc_write_failures}}</span></li>
+    <li>errors: {{this.sync.last.value.pull.errors}}</li>
   </ul>
+{{else if this.sync.last.error}}
+  Error: {{this.sync.last.error}}
 {{/if}}
