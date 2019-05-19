@@ -6,7 +6,8 @@ video {
 }
 
 #camera {
-  display: relative;
+  position: relative;
+  overflow: hidden;
 }
 
 #camera canvas {
