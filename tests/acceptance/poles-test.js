@@ -1,6 +1,6 @@
 import { module, test } from 'qunit';
 import { visit, click, currentURL, fillIn } from '@ember/test-helpers';
-import { setupApplicationTest } from 'ember-qunit';
+import { setupApplicationTest } from '../helpers/application-tests';
 
 import PouchDB from 'pouchdb';
 import config from 'pole-barcodes/config/environment';
