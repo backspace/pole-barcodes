@@ -14,6 +14,10 @@ export default class SyncController extends Controller {
   @service store;
 
   @task(function*() {
+    if (this.databases.includes(this.destination)) {
+      this.databases.removeObject(this.destination);
+    }
+
     this.databases.unshiftObject(this.destination);
 
     let sourceDb = this.store.adapterFor('application').db;

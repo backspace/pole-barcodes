@@ -43,5 +43,9 @@ module('Acceptance | sync', function(hooks) {
 
     await click('li:last-child [data-database]');
     assert.dom('input').hasValue('another-sync');
+
+    await click('button');
+    assert.dom('[data-database]').exists({count: 2});
+    assert.dom('li:first-child [data-database]').hasText('another-sync');
   });
 });
