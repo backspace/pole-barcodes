@@ -3,6 +3,8 @@ const { Model, attr } = DS;
 
 export default class PoleModel extends Model {
   @attr('string') barcode;
+  @attr('number') latitude;
+  @attr('number') longitude;
 
   @attr('string') rev;
 }

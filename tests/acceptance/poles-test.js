@@ -20,15 +20,28 @@ module('Acceptance | poles', function(hooks) {
   });
 
   test('creates and saves a new pole', async function(assert) {
+    let getCurrentPosition = navigator.geolocation.getCurrentPosition;
+    navigator.geolocation.getCurrentPosition = (callback) => {
+      callback({ coords: { latitude: 1, longitude: -1 }});
+    };
+
     await new PouchDB(config.emberPouch.localDb).destroy();
 
     await visit('/poles');
     await click('a.new');
 
     await fillIn('[data-barcode]', '1234');
+
+    await click('[data-locate]');
+
+    assert.dom('[data-latitude]').hasValue('1');
+    assert.dom('[data-longitude]').hasValue('-1');
+
     await click('[data-save]');
 
     assert.dom('td').exists({count: 1});
     assert.dom('td:first-child').hasText('1234');
+
+    navigator.geolocation.getCurrentPosition = getCurrentPosition;
   });
 });

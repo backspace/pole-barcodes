@@ -3,6 +3,18 @@
   <Input @value={{this.barcode}} class="border border-black" data-barcode />
 </label>
 
+<label>
+  Latitude
+  <Input @value={{this.latitude}} class="border border-black" data-latitude />
+</label>
+
+<label>
+  Longitude
+  <Input @value={{this.longitude}} class="border border-black" data-longitude />
+</label>
+
+<button onclick={{action "locate"}} class="bg-black text-white text-sm p-2" data-locate>Locate</button>
+
 <BarcodeReader @onBarcodeRead={{action (mut this.barcode)}} @onError={{action (mut this.error)}} />
 
 <button onclick={{action "save"}} class="bg-black text-white text-sm p-2" data-save>Save</button>

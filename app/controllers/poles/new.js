@@ -6,6 +6,16 @@ import { inject as service } from '@ember/service';
 export default class NewPoleController extends Controller {
   @service store;
   @tracked barcode;
+  @tracked latitude;
+  @tracked longitude;
+
+  @action
+  locate() {
+    navigator.geolocation.getCurrentPosition(position => {
+      this.latitude = position.coords.latitude;
+      this.longitude = position.coords.longitude;
+    });
+  }
 
   @action
   save() {
