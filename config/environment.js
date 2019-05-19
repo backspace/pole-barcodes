@@ -28,6 +28,9 @@ module.exports = function(environment) {
       // when it is created
     },
 
+    'ember-local-storage': {
+      namespace: true,
+    },
     emberPouch: {
       localDb: 'pole-barcodes-development',
     },
@@ -52,6 +55,7 @@ module.exports = function(environment) {
     ENV.APP.rootElement = '#ember-testing';
     ENV.APP.autoboot = false;
 
+    ENV['ember-local-storage'].namespace = 'pole-barcodes-test';
     ENV.emberPouch.localDb = 'pole-barcodes-test';
   }
 

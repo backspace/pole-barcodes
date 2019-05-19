@@ -1,6 +1,12 @@
 <Input @value={{this.destination}} />
 <button onclick={{perform this.sync}}>Sync</button>
 
+<ul>
+  {{#each this.databases as |database|}}
+    <li data-database>{{database}}</li>
+  {{/each}}
+</ul>
+
 {{#if this.sync.last.value}}
   <ul data-push>
     <li>push</li>
