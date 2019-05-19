@@ -9,7 +9,9 @@ const Router = EmberRouter.extend({
 Router.map(function() {
   this.route('scan');
 
-  this.route('poles');
+  this.route('poles', function() {
+    this.route('new');
+  });
 
   this.route('sync');
 });
