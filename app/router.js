@@ -10,6 +10,8 @@ Router.map(function() {
   this.route('scan');
 
   this.route('poles');
+
+  this.route('sync');
 });
 
 export default Router;
