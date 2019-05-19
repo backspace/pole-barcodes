@@ -1,13 +1,16 @@
-<Input @value={{this.destination}} />
-<button onclick={{perform this.sync}}>Sync</button>
+<Input @value={{this.destination}} class="border border-black" />
+<button onclick={{perform this.sync}} class="bg-black text-white text-sm p-2">Sync</button>
 
-<ul>
-  {{#each this.databases as |database|}}
-    <li>
-      <button onclick={{action (mut this.destination) database}} data-database>{{database}}</button>
-    </li>
-  {{/each}}
-</ul>
+{{#if this.databases}}
+  <h2>Synced databases</h2>
+  <ul>
+    {{#each this.databases as |database|}}
+      <li>
+        <a href="#" onclick={{action (mut this.destination) database}} data-database class="text-black text-xs">{{database}}</a>
+      </li>
+    {{/each}}
+  </ul>
+{{/if}}
 
 {{#if this.sync.last.value}}
   <ul data-push>
