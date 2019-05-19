@@ -46,6 +46,17 @@ export default class BarcodeReader extends Component {
     )
 
     Quagga.onDetected((result) => {
+      if (this.args.onBarcodeCaptured) {
+        let video = this.camera.querySelector('video');
+        let canvas = document.createElement('canvas');
+        canvas.width = video.scrollWidth;
+        canvas.height = video.scrollHeight;
+
+        canvas.getContext('2d').drawImage(video, 0, 0, video.scrollWidth, video.scrollHeight);
+
+        this.args.onBarcodeCaptured(canvas.toDataURL());
+      }
+
       this.args.onBarcodeRead(result.codeResult.code);
     });
 

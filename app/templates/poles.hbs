@@ -9,7 +9,13 @@
   <tbody>
     {{#each this.model as |pole|}}
       <tr>
-        <td>{{pole.barcode}}</td>
+        <td>
+          {{pole.barcode}}
+          {{#each pole.photos as |photo|}}
+            stub? {{photo.stub}}
+            <img src="data:image/png;base64,{{photo.data}}" alt="photo of the barcode">
+          {{/each}}
+        </td>
       </tr>
     {{/each}}
   </tbody>

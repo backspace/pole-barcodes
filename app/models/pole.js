@@ -6,5 +6,7 @@ export default class PoleModel extends Model {
   @attr('number') latitude;
   @attr('number') longitude;
 
+  @attr('attachments', { defaultValue: () => [] } ) photos;
+
   @attr('string') rev;
 }

@@ -29,6 +29,10 @@
   </LeafletMap>
 {{/if}}
 
-<BarcodeReader @onBarcodeRead={{action (mut this.barcode)}} @onError={{action (mut this.error)}} />
+{{#if this.barcodePhoto}}
+  <img src="{{this.barcodePhoto}}">
+{{/if}}
+
+<BarcodeReader @onBarcodeCaptured={{action (mut this.barcodePhoto)}} @onBarcodeRead={{action (mut this.barcode)}} @onError={{action (mut this.error)}} />
 
 <button onclick={{action "save"}} class="bg-black text-white text-sm p-2" data-save>Save</button>

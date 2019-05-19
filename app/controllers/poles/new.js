@@ -2,6 +2,7 @@ import Controller from '@ember/controller';
 import { tracked } from '@glimmer/tracking';
 import { action } from '@ember/object';
 import { inject as service } from '@ember/service';
+import EmberObject from '@ember/object';
 
 export default class NewPoleController extends Controller {
   @service store;
@@ -19,8 +20,18 @@ export default class NewPoleController extends Controller {
 
   @action
   save() {
+    let photos = [];
+    if (this.barcodePhoto) {
+      let base64Only = this.barcodePhoto.substring(this.barcodePhoto.indexOf(',') + 1);
+      photos.push(EmberObject.create({
+        name: 'barcode.png',
+        content_type: 'image/png',
+        data: base64Only
+      }));
+    }
     this.store.createRecord('pole', {
-      barcode: this.barcode
+      barcode: this.barcode,
+      photos
     }).save().then(() => this.transitionToRoute('poles'));
   }
 }
