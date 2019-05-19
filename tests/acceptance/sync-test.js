@@ -31,7 +31,7 @@ module('Acceptance | sync', function(hooks) {
     await syncController.syncPromise;
 
     assert.dom('[data-database]').exists({count: 2});
-    assert.dom('[data-database]:first-child').hasText('destination-db');
+    assert.dom('li:first-child [data-database]').hasText('destination-db');
 
     assert.dom('[data-push] [data-read]').hasText('2');
     assert.dom('[data-push] [data-written').hasText('2');
@@ -40,5 +40,8 @@ module('Acceptance | sync', function(hooks) {
     assert.dom('[data-pull] [data-read]').hasText('0');
     assert.dom('[data-pull] [data-written').hasText('0');
     assert.dom('[data-pull] [data-write-failures]').hasText('0');
+
+    await click('li:last-child [data-database]');
+    assert.dom('input').hasValue('another-sync');
   });
 });

@@ -3,7 +3,9 @@
 
 <ul>
   {{#each this.databases as |database|}}
-    <li data-database>{{database}}</li>
+    <li>
+      <button onclick={{action (mut this.destination) database}} data-database>{{database}}</button>
+    </li>
   {{/each}}
 </ul>
 
