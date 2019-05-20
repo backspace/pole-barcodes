@@ -23,20 +23,22 @@
     </table>
   </div>
   <div class="flex-grow">
-    <LeafletMap @lat="49.895513" @lng="-97.138503" @zoom="14" class="w-full h-full" as |layers|>
-      <layers.tile @url="https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}.png"/>
-      {{#each this.model as |pole|}}
-        {{#if pole.latitude}}
-          <layers.marker @lat={{pole.latitude}} @lng={{pole.longitude}} as |marker|>
-            <marker.popup>
-              {{pole.barcode}}
-              {{#each pole.photos as |photo|}}
-                <ImageAttachment @model={{pole}} @attachment={{photo}} />
-              {{/each}}
-            </marker.popup>
-          </layers.marker>
-        {{/if}}
-      {{/each}}
-    </LeafletMap>
+    {{#if this.positions}}
+      <LeafletMap @bounds={{lat-lng-bounds this.positions}} class="w-full h-full" as |layers|>
+        <layers.tile @url="https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}.png"/>
+        {{#each this.model as |pole|}}
+          {{#if pole.latitude}}
+            <layers.marker @lat={{pole.latitude}} @lng={{pole.longitude}} as |marker|>
+              <marker.popup>
+                {{pole.barcode}}
+                {{#each pole.photos as |photo|}}
+                  <ImageAttachment @model={{pole}} @attachment={{photo}} />
+                {{/each}}
+              </marker.popup>
+            </layers.marker>
+          {{/if}}
+        {{/each}}
+      </LeafletMap>
+    {{/if}}
   </div>
 </div>
