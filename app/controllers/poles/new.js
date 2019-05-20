@@ -31,6 +31,8 @@ export default class NewPoleController extends Controller {
     }
     this.store.createRecord('pole', {
       barcode: this.barcode,
+      latitude: this.latitude,
+      longitude: this.longitude,
       photos
     }).save().then(() => this.transitionToRoute('poles'));
   }
