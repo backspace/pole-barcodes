@@ -1,6 +1,10 @@
-<nav>
-  {{link-to "Scan" "scan" activeClass="font-bold"}}
-  {{link-to "Poles" "poles" activeClass="font-bold"}}
-  {{link-to "Sync" "sync" activeClass="font-bold"}}
-</nav>
-{{outlet}}
+<div class="flex flex-col w-screen h-screen">
+  <nav>
+    {{link-to "Scan" "scan" activeClass="font-bold"}}
+    {{link-to "Poles" "poles" activeClass="font-bold"}}
+    {{link-to "Sync" "sync" activeClass="font-bold"}}
+  </nav>
+  <div class="flex-grow h-full">
+    {{outlet}}
+  </div>
+</div>

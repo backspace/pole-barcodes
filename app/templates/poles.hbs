@@ -1,7 +1,7 @@
 {{outlet}}
 
-<div class="flex h-screen">
-  <div>
+<div class="flex h-full">
+  <div class="overflow-y-scroll">
     <table>
       <thead>
         <tr>
@@ -23,7 +23,7 @@
     </table>
   </div>
   <div class="flex-grow">
-    <LeafletMap @lat="49.895513" @lng="-97.138503" @zoom="14" class="w-full h-64" as |layers|>
+    <LeafletMap @lat="49.895513" @lng="-97.138503" @zoom="14" class="w-full h-full" as |layers|>
       <layers.tile @url="https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}.png"/>
       {{#each this.model as |pole|}}
         {{#if pole.latitude}}
