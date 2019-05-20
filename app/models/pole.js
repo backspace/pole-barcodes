@@ -9,4 +9,7 @@ export default class PoleModel extends Model {
   @attr('attachments', { defaultValue: () => [] } ) photos;
 
   @attr('string') rev;
+
+  @attr('createDate') createdAt;
+  @attr('updateDate') updatedAt;
 }
