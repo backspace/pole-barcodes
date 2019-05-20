@@ -1,21 +1,42 @@
 {{outlet}}
 
-<table>
-  <thead>
-    <tr>
-      <th>barcode</th>
-    </tr>
-  </thead>
-  <tbody>
-    {{#each this.model as |pole|}}
-      <tr>
-        <td>
-          {{pole.barcode}}
-          {{#each pole.photos as |photo|}}
-            <ImageAttachment @model={{pole}} @attachment={{photo}} />
-          {{/each}}
-        </td>
-      </tr>
-    {{/each}}
-  </tbody>
-</table>
+<div class="flex h-screen">
+  <div>
+    <table>
+      <thead>
+        <tr>
+          <th>barcode</th>
+        </tr>
+      </thead>
+      <tbody>
+        {{#each this.model as |pole|}}
+          <tr>
+            <td>
+              {{pole.barcode}}
+              {{#each pole.photos as |photo|}}
+                <ImageAttachment @model={{pole}} @attachment={{photo}} />
+              {{/each}}
+            </td>
+          </tr>
+        {{/each}}
+      </tbody>
+    </table>
+  </div>
+  <div class="flex-grow">
+    <LeafletMap @lat="49.895513" @lng="-97.138503" @zoom="14" class="w-full h-64" as |layers|>
+      <layers.tile @url="https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}.png"/>
+      {{#each this.model as |pole|}}
+        {{#if pole.latitude}}
+          <layers.marker @lat={{pole.latitude}} @lng={{pole.longitude}} as |marker|>
+            <marker.popup>
+              {{pole.barcode}}
+              {{#each pole.photos as |photo|}}
+                <ImageAttachment @model={{pole}} @attachment={{photo}} />
+              {{/each}}
+            </marker.popup>
+          </layers.marker>
+        {{/if}}
+      {{/each}}
+    </LeafletMap>
+  </div>
+</div>
