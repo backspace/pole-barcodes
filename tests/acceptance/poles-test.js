@@ -41,7 +41,12 @@ module('Acceptance | poles', function(hooks) {
 
     assert.dom('td').exists({count: 1});
     assert.dom('td:first-child').hasText('1234');
+    assert.equal(currentURL(), '/poles');
 
     navigator.geolocation.getCurrentPosition = getCurrentPosition;
+
+    await click('a.new');
+
+    assert.dom('[data-barcode]').hasValue('');
   });
 });

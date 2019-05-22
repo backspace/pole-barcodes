@@ -1,11 +1,13 @@
-import Controller from '@ember/controller';
+import Component from '@glimmer/component';
 import { tracked } from '@glimmer/tracking';
 import { action } from '@ember/object';
 import { inject as service } from '@ember/service';
 import EmberObject from '@ember/object';
 
-export default class NewPoleController extends Controller {
+export default class PoleForm extends Component {
   @service store;
+  @service router;
+
   @tracked barcode;
   @tracked latitude;
   @tracked longitude;
@@ -34,6 +36,6 @@ export default class NewPoleController extends Controller {
       latitude: this.latitude,
       longitude: this.longitude,
       photos
-    }).save().then(() => this.transitionToRoute('poles'));
+    }).save().then(() => this.router.transitionTo('poles'));
   }
 }
