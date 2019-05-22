@@ -25,7 +25,7 @@
   <div class="flex-grow">
     {{#if this.positions}}
       <LeafletMap @bounds={{lat-lng-bounds this.positions}} class="w-full h-full" as |layers|>
-        <layers.tile @url="https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}.png"/>
+        <layers.tile @url="/assets/toner/{z}/{x}/{y}.png" @minZoom=14 @maxZoom=17 />
         {{#each this.model as |pole|}}
           {{#if pole.latitude}}
             <layers.marker @lat={{pole.latitude}} @lng={{pole.longitude}} as |marker|>

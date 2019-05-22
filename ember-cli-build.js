@@ -4,7 +4,9 @@ const EmberApp = require('ember-cli/lib/broccoli/ember-app'); // eslint-disable-
 
 module.exports = function(defaults) {
   let app = new EmberApp(defaults, {
-    // Add options here
+    fingerprint: {
+      exclude: ['toner/'],
+    },
   });
 
   // Use `app.import` to add additional libraries to the generated
