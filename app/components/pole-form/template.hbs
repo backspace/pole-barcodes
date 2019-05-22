@@ -30,7 +30,7 @@
 {{/if}}
 
 {{#if this.barcodePhoto}}
-  <img src="{{this.barcodePhoto}}">
+  <img src={{this.barcodePhoto}} alt="scanned barcode">
 {{/if}}
 
 <BarcodeReader @onBarcodeCaptured={{action (mut this.barcodePhoto)}} @onBarcodeRead={{action (mut this.barcode)}} @onError={{action (mut this.error)}} />
