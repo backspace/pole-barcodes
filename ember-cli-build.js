@@ -5,7 +5,14 @@ const EmberApp = require('ember-cli/lib/broccoli/ember-app'); // eslint-disable-
 module.exports = function(defaults) {
   let app = new EmberApp(defaults, {
     fingerprint: {
-      exclude: ['toner/'],
+      exclude: [
+        'images/layers-2x.png',
+        'images/layers.png',
+        'images/marker-icon-2x.png',
+        'images/marker-icon.png',
+        'images/marker-shadow.png',
+        'toner/',
+      ],
     },
   });
 
