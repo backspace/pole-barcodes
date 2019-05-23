@@ -18,7 +18,7 @@
 {{#if this.latitude}}
   a map?
   <LeafletMap @lat={{this.latitude}} @lng={{this.longitude}} @zoom="15" class="w-64 h-64" as |layers|>
-    <layers.tile @url="/assets/toner/{z}/{x}/{y}.png"  @minZoom=14 @maxZoom=17 />
+    <layers.tile @url="/assets/toner/{z}/{x}/{y}.png"  @minZoom="14" @maxZoom="17" />
 
     <layers.marker @lat={{this.latitude}} @lng={{this.longitude}} as |marker|>
       <marker.popup>
