@@ -1,1 +1,44 @@
 {{link-to "New" "poles.new" class="new"}}
+
+<div class="flex h-full">
+  <div class="overflow-y-scroll">
+    <table>
+      <thead>
+        <tr>
+          <th>barcode</th>
+        </tr>
+      </thead>
+      <tbody>
+        {{#each this.model as |pole|}}
+          <tr>
+            <td>
+              {{pole.barcode}}
+              {{#each pole.photos as |photo|}}
+                <ImageAttachment @model={{pole}} @attachment={{photo}} />
+              {{/each}}
+            </td>
+          </tr>
+        {{/each}}
+      </tbody>
+    </table>
+  </div>
+  <div class="flex-grow">
+    {{#if this.positions}}
+      <LeafletMap @bounds={{lat-lng-bounds this.positions}} class="w-full h-full" as |layers|>
+        <layers.tile @url="/assets/toner/{z}/{x}/{y}.png" @minZoom="14" @maxZoom="17" />
+        {{#each this.model as |pole|}}
+          {{#if pole.latitude}}
+            <layers.marker @lat={{pole.latitude}} @lng={{pole.longitude}} as |marker|>
+              <marker.popup>
+                {{pole.barcode}}
+                {{#each pole.photos as |photo|}}
+                  <ImageAttachment @model={{pole}} @attachment={{photo}} />
+                {{/each}}
+              </marker.popup>
+            </layers.marker>
+          {{/if}}
+        {{/each}}
+      </LeafletMap>
+    {{/if}}
+  </div>
+</div>
