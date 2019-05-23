@@ -13,7 +13,9 @@
   <Input @value={{this.longitude}} class="border border-black" data-longitude />
 </label>
 
-<button onclick={{action "locate"}} class="bg-black text-white text-sm p-2" data-locate>Locate</button>
+<button onclick={{action "locate"}} class="bg-black text-white text-sm p-2" data-locate>
+  {{fa-icon "crosshairs"}}
+</button>
 
 {{#if this.latitude}}
   a map?
