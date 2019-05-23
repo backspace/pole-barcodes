@@ -1,5 +1,5 @@
 import { module, test } from 'qunit';
-import { visit, click, currentURL, fillIn } from '@ember/test-helpers';
+import { visit, click, currentURL, fillIn, waitFor } from '@ember/test-helpers';
 import { setupApplicationTest } from '../helpers/application-tests';
 
 import PouchDB from 'pouchdb';
@@ -38,6 +38,7 @@ module('Acceptance | poles', function(hooks) {
     assert.dom('[data-longitude]').hasValue('-1');
 
     await click('[data-save]');
+    await waitFor('a.new');
 
     assert.dom('td').exists({count: 1});
     assert.dom('td:first-child').hasText('1234');
