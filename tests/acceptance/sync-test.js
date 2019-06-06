@@ -13,14 +13,22 @@ module('Acceptance | sync', function(hooks) {
     await new PouchDB(config.emberPouch.localDb).destroy();
 
     await this.owner.lookup('controller:sync').databases.clear();
-    await this.owner.lookup('controller:sync').databases.addObject('another-sync');
+    await this.owner
+      .lookup('controller:sync')
+      .databases.addObject('another-sync');
 
-    await this.owner.lookup('service:store').createRecord('pole').save();
-    await this.owner.lookup('service:store').createRecord('pole').save();
+    await this.owner
+      .lookup('service:store')
+      .createRecord('pole')
+      .save();
+    await this.owner
+      .lookup('service:store')
+      .createRecord('pole')
+      .save();
 
     await visit('/sync');
 
-    assert.dom('[data-database]').exists({count: 1});
+    assert.dom('[data-database]').exists({ count: 1 });
     assert.dom('[data-database]').hasText('another-sync');
 
     let syncController = this.owner.lookup('controller:sync');
@@ -30,7 +38,7 @@ module('Acceptance | sync', function(hooks) {
 
     await syncController.syncPromise;
 
-    assert.dom('[data-database]').exists({count: 2});
+    assert.dom('[data-database]').exists({ count: 2 });
     assert.dom('li:first-child [data-database]').hasText('destination-db');
 
     assert.dom('[data-push] [data-read]').hasText('2');
@@ -45,7 +53,7 @@ module('Acceptance | sync', function(hooks) {
     assert.dom('input').hasValue('another-sync');
 
     await click('button');
-    assert.dom('[data-database]').exists({count: 2});
+    assert.dom('[data-database]').exists({ count: 2 });
     assert.dom('li:first-child [data-database]').hasText('another-sync');
   });
 });

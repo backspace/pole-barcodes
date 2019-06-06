@@ -24,18 +24,25 @@ export default class PoleForm extends Component {
   save() {
     let photos = [];
     if (this.barcodePhoto) {
-      let base64Only = this.barcodePhoto.substring(this.barcodePhoto.indexOf(',') + 1);
-      photos.push(EmberObject.create({
-        name: 'barcode.png',
-        content_type: 'image/png',
-        data: base64Only
-      }));
+      let base64Only = this.barcodePhoto.substring(
+        this.barcodePhoto.indexOf(',') + 1
+      );
+      photos.push(
+        EmberObject.create({
+          name: 'barcode.png',
+          content_type: 'image/png',
+          data: base64Only,
+        })
+      );
     }
-    this.store.createRecord('pole', {
-      barcode: this.barcode,
-      latitude: this.latitude,
-      longitude: this.longitude,
-      photos
-    }).save().then(() => this.router.transitionTo('poles'));
+    this.store
+      .createRecord('pole', {
+        barcode: this.barcode,
+        latitude: this.latitude,
+        longitude: this.longitude,
+        photos,
+      })
+      .save()
+      .then(() => this.router.transitionTo('poles'));
   }
 }

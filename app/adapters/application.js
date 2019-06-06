@@ -18,5 +18,5 @@ export default Adapter.extend({
   init() {
     this._super(...arguments);
     this.set('db', createDb());
-  }
+  },
 });

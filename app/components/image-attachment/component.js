@@ -17,8 +17,13 @@ export default class ImageAttachment extends Component {
     let adapter = this.store.adapterFor(model.constructor.modelName);
 
     let attachment = this.args.attachment;
-    let data = yield adapter.db.rel.getAttachment(adapter.getRecordTypeName(model.constructor), model.id, attachment.name);
+    let data = yield adapter.db.rel.getAttachment(
+      adapter.getRecordTypeName(model.constructor),
+      model.id,
+      attachment.name
+    );
 
     return yield blobUtil.blobToBase64String(data);
-  }) base64StringTask;
+  })
+  base64StringTask;
 }

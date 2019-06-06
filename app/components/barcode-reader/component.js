@@ -4,55 +4,55 @@ import { action } from '@ember/object';
 import Quagga from 'quagga';
 
 export default class BarcodeReader extends Component {
-
   @action
   requestCamera() {
     let state = {
       inputStream: {
-          type : "LiveStream",
-          constraints: {
-              width: {min: 640},
-              height: {min: 480},
-              aspectRatio: {min: 1, max: 100},
-              facingMode: "environment" // or user
-          },
-          target: this.camera
+        type: 'LiveStream',
+        constraints: {
+          width: { min: 640 },
+          height: { min: 480 },
+          aspectRatio: { min: 1, max: 100 },
+          facingMode: 'environment', // or user
+        },
+        target: this.camera,
       },
       locator: {
-          patchSize: "medium",
-          halfSample: true
+        patchSize: 'medium',
+        halfSample: true,
       },
       numOfWorkers: 2,
       frequency: 10,
       decoder: {
-          readers : [{
-              format: "code_39_reader",
-              config: {}
-          }]
+        readers: [
+          {
+            format: 'code_39_reader',
+            config: {},
+          },
+        ],
       },
-      locate: true
+      locate: true,
     };
 
-    Quagga.init(
-      state,
-      (err) => {
-        if (err) {
-          this.error = err;
-          return;
-        }
-
-        Quagga.start();
+    Quagga.init(state, err => {
+      if (err) {
+        this.error = err;
+        return;
       }
-    )
 
-    Quagga.onDetected((result) => {
+      Quagga.start();
+    });
+
+    Quagga.onDetected(result => {
       if (this.args.onBarcodeCaptured) {
         let video = this.camera.querySelector('video');
         let canvas = document.createElement('canvas');
         canvas.width = video.scrollWidth;
         canvas.height = video.scrollHeight;
 
-        canvas.getContext('2d').drawImage(video, 0, 0, video.scrollWidth, video.scrollHeight);
+        canvas
+          .getContext('2d')
+          .drawImage(video, 0, 0, video.scrollWidth, video.scrollHeight);
 
         this.args.onBarcodeCaptured(canvas.toDataURL());
       }
@@ -62,25 +62,43 @@ export default class BarcodeReader extends Component {
 
     Quagga.onProcessed(function(result) {
       var drawingCtx = Quagga.canvas.ctx.overlay,
-          drawingCanvas = Quagga.canvas.dom.overlay;
+        drawingCanvas = Quagga.canvas.dom.overlay;
 
       if (result) {
-          if (result.boxes) {
-              drawingCtx.clearRect(0, 0, parseInt(drawingCanvas.getAttribute("width")), parseInt(drawingCanvas.getAttribute("height")));
-              result.boxes.filter(function (box) {
-                  return box !== result.box;
-              }).forEach(function (box) {
-                  Quagga.ImageDebug.drawPath(box, {x: 0, y: 1}, drawingCtx, {color: "green", lineWidth: 2});
+        if (result.boxes) {
+          drawingCtx.clearRect(
+            0,
+            0,
+            parseInt(drawingCanvas.getAttribute('width')),
+            parseInt(drawingCanvas.getAttribute('height'))
+          );
+          result.boxes
+            .filter(function(box) {
+              return box !== result.box;
+            })
+            .forEach(function(box) {
+              Quagga.ImageDebug.drawPath(box, { x: 0, y: 1 }, drawingCtx, {
+                color: 'green',
+                lineWidth: 2,
               });
-          }
+            });
+        }
 
-          if (result.box) {
-              Quagga.ImageDebug.drawPath(result.box, {x: 0, y: 1}, drawingCtx, {color: "#00F", lineWidth: 2});
-          }
+        if (result.box) {
+          Quagga.ImageDebug.drawPath(result.box, { x: 0, y: 1 }, drawingCtx, {
+            color: '#00F',
+            lineWidth: 2,
+          });
+        }
 
-          if (result.codeResult && result.codeResult.code) {
-              Quagga.ImageDebug.drawPath(result.line, {x: 'x', y: 'y'}, drawingCtx, {color: 'red', lineWidth: 3});
-          }
+        if (result.codeResult && result.codeResult.code) {
+          Quagga.ImageDebug.drawPath(
+            result.line,
+            { x: 'x', y: 'y' },
+            drawingCtx,
+            { color: 'red', lineWidth: 3 }
+          );
+        }
       }
     });
   }

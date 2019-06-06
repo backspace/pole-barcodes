@@ -31,5 +31,6 @@ export default class SyncController extends Controller {
       e.handled = e;
       throw e;
     }
-  }) sync;
+  })
+  sync;
 }

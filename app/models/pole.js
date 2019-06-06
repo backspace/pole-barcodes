@@ -14,9 +14,10 @@ export default class PoleModel extends Model {
     } else {
       return null;
     }
-  }) position;
+  })
+  position;
 
-  @attr('attachments', { defaultValue: () => [] } ) photos;
+  @attr('attachments', { defaultValue: () => [] }) photos;
 
   @attr('string') rev;
 
