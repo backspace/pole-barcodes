@@ -13,9 +13,6 @@
           <tr>
             <td>
               {{pole.barcode}}
-              {{#each pole.photos as |photo|}}
-                <ImageAttachment @model={{pole}} @attachment={{photo}} />
-              {{/each}}
             </td>
           </tr>
         {{/each}}
