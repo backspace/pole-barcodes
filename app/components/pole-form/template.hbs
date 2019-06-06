@@ -15,7 +15,7 @@
 
   {{#if this.latitude}}
     <LeafletMap @lat={{this.latitude}} @lng={{this.longitude}} @zoom="15" class="w-64 h-64" as |layers|>
-      <layers.tile @url="/assets/toner/{z}/{x}/{y}.png" @minZoom="14" @maxZoom="17" />
+      <layers.tile @url="http://a.tile.stamen.com/toner/{z}/{x}/{y}.png" @minZoom="14" @maxZoom="17" @useCache={{true}} />
 
       <layers.marker @lat={{this.latitude}} @lng={{this.longitude}} />
 
