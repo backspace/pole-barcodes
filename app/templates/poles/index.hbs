@@ -10,7 +10,7 @@
       </thead>
       <tbody>
         {{#each this.model as |pole|}}
-          <tr>
+          <tr role="button" {{action (mut this.activePole) pole}}>
             <td>
               {{pole.barcode}}
             </td>
@@ -26,7 +26,7 @@
         {{#each this.model as |pole|}}
           {{#if pole.latitude}}
             <layers.marker @lat={{pole.latitude}} @lng={{pole.longitude}} as |marker|>
-              <marker.popup>
+              <marker.popup @popupOpen={{eq this.activePole pole}}>
                 {{pole.barcode}}
                 {{#each pole.photos as |photo|}}
                   <ImageAttachment @model={{pole}} @attachment={{photo}} />

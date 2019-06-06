@@ -9,14 +9,21 @@ module('Acceptance | poles', function(hooks) {
   setupApplicationTest(hooks);
 
   test('lists poles', async function(assert) {
-    await this.owner.lookup('service:store').createRecord('pole', {barcode: '0044019'}).save();
-    await this.owner.lookup('service:store').createRecord('pole', {barcode: '0044020'}).save();
+    await this.owner.lookup('service:store').createRecord('pole', {barcode: '0044019', latitude: 49.89940376340175, longitude: -97.13256220954406	}).save();
+    await this.owner.lookup('service:store').createRecord('pole', {barcode: '0044020', latitude: 49.878075159197934, longitude: -97.14541203651892 }).save();
 
     await visit('/poles');
 
     assert.equal(currentURL(), '/poles');
     assert.dom('td').exists({count: 2});
     assert.dom('td:first-child').hasText('0044019');
+
+    assert.dom('.leaflet-popup').doesNotExist();
+
+    await click('tbody tr:first-child');
+
+    assert.dom('.leaflet-popup').exists();
+    assert.dom('.leaflet-popup-content').hasText('0044019');
   });
 
   test('creates and saves a new pole', async function(assert) {
