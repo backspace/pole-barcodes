@@ -10,7 +10,9 @@ module.exports = {
   env: {
     browser: true,
   },
-  rules: {},
+  rules: {
+    'prettier/prettier': 'error',
+  },
   overrides: [
     // node files
     {
