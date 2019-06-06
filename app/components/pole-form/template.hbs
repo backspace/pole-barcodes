@@ -1,35 +1,39 @@
-<label>
-  Barcode
-  <Input @value={{this.barcode}} class="border border-black" data-barcode />
-</label>
+<div class='w-screen p-4'>
+  <label>
+    Lat
+    <Input @value={{this.latitude}} class="border border-black" data-latitude />
+  </label>
+  <br>
+  <label>
+    Lon
+    <Input @value={{this.longitude}} class="border border-black" data-longitude />
+  </label>
+  <br>
+  <button onclick={{action "locate"}} class="bg-black text-white text-sm p-2" data-locate>
+    {{fa-icon "crosshairs"}}
+  </button>
 
-<label>
-  Latitude
-  <Input @value={{this.latitude}} class="border border-black" data-latitude />
-</label>
+  {{#if this.latitude}}
+    <LeafletMap @lat={{this.latitude}} @lng={{this.longitude}} @zoom="15" class="w-64 h-64" as |layers|>
+      <layers.tile @url="/assets/toner/{z}/{x}/{y}.png" @minZoom="14" @maxZoom="17" />
 
-<label>
-  Longitude
-  <Input @value={{this.longitude}} class="border border-black" data-longitude />
-</label>
+      <layers.marker @lat={{this.latitude}} @lng={{this.longitude}} />
 
-<button onclick={{action "locate"}} class="bg-black text-white text-sm p-2" data-locate>
-  {{fa-icon "crosshairs"}}
-</button>
+    </LeafletMap>
+  {{/if}}
 
-{{#if this.latitude}}
-  <LeafletMap @lat={{this.latitude}} @lng={{this.longitude}} @zoom="15" class="w-64 h-64" as |layers|>
-    <layers.tile @url="/assets/toner/{z}/{x}/{y}.png" @minZoom="14" @maxZoom="17" />
+  <hr>
 
-    <layers.marker @lat={{this.latitude}} @lng={{this.longitude}} />
+  <label>
+    Barcode
+    <Input @value={{this.barcode}} class="border border-black" data-barcode />
+  </label>
 
-  </LeafletMap>
-{{/if}}
+  {{#if this.barcodePhoto}}
+    <img src={{this.barcodePhoto}} alt="scanned barcode">
+  {{/if}}
 
-{{#if this.barcodePhoto}}
-  <img src={{this.barcodePhoto}} alt="scanned barcode">
-{{/if}}
+  <BarcodeReader @onBarcodeCaptured={{action (mut this.barcodePhoto)}} @onBarcodeRead={{action (mut this.barcode)}} @onError={{action (mut this.error)}} />
 
-<BarcodeReader @onBarcodeCaptured={{action (mut this.barcodePhoto)}} @onBarcodeRead={{action (mut this.barcode)}} @onError={{action (mut this.error)}} />
-
-<button onclick={{action "save"}} class="bg-black text-white text-sm p-2" data-save>Save</button>
+  <button onclick={{action "save"}} class="bg-black text-white text-sm p-2 w-full block" data-save>Save</button>
+</div>
