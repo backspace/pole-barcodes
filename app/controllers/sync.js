@@ -7,11 +7,15 @@ import { storageFor } from 'ember-local-storage';
 
 import PouchDB from 'pouchdb';
 
+import config from 'pole-barcodes/config/environment';
+
 export default class SyncController extends Controller {
   @tracked syncPromise = new Promise(() => {});
   @storageFor('databases') databases;
 
   @service store;
+
+  version = config.APP.version;
 
   @task(function*() {
     if (this.databases.includes(this.destination)) {
