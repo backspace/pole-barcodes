@@ -21,6 +21,13 @@ export default class PoleForm extends Component {
   }
 
   @action
+  updateBarcode(barcode) {
+    if (!this.isDestroyed) {
+      this.barcode = barcode;
+    }
+  }
+
+  @action
   save() {
     let photos = [];
     if (this.barcodePhoto) {

@@ -1,5 +1,13 @@
 import { module, test } from 'qunit';
-import { visit, click, currentURL, fillIn, waitFor } from '@ember/test-helpers';
+import {
+  visit,
+  click,
+  currentURL,
+  fillIn,
+  find,
+  waitFor,
+  waitUntil,
+} from '@ember/test-helpers';
 import { setupApplicationTest } from '../helpers/application-tests';
 
 import PouchDB from 'pouchdb';
@@ -70,5 +78,20 @@ module('Acceptance | poles', function(hooks) {
     await click('a.new');
 
     assert.dom('[data-barcode]').hasValue('');
+  });
+
+  test('reads a barcode from the camera', async function(assert) {
+    await visit('/poles/new');
+    await click('[data-read-from-camera]');
+
+    await waitUntil(
+      () => {
+        let e = find('[data-barcode]');
+        return e.value === '0044177';
+      },
+      { timeout: 5000 }
+    );
+
+    assert.dom('[data-barcode]').hasValue('0044177');
   });
 });

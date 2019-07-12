@@ -5,8 +5,12 @@ module.exports = {
   launch_in_dev: ['Chrome'],
   browser_args: {
     Chrome: {
-      mode: 'ci',
-      args: [
+      all: [
+        '--use-fake-device-for-media-stream',
+        '--use-fake-ui-for-media-stream',
+        '--use-file-for-fake-video-capture=tests/data/camera-input-rapid-repetitive-motion.mjpeg',
+      ],
+      ci: [
         // --no-sandbox is needed when running Chrome inside a container
         process.env.TRAVIS ? '--no-sandbox' : null,
 
