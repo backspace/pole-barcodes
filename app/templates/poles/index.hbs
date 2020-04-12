@@ -1,4 +1,4 @@
-{{link-to "New" "poles.new" class="new"}}
+<LinkTo @route="poles.new" class="new">New</LinkTo>
 
 <div class="flex h-full">
   <div class="overflow-y-scroll">
@@ -10,7 +10,7 @@
       </thead>
       <tbody>
         {{#each this.model as |pole|}}
-          <tr role="button" {{action (mut this.activePole) pole}}>
+          <tr role="button" {{@on "click" (mut this.activePole) pole}}>
             <td>
               {{pole.barcode}}
             </td>

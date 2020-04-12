@@ -1,8 +1,8 @@
 <div class="flex flex-col w-screen h-screen">
   <nav>
-    {{link-to "Scan" "scan" activeClass="font-bold"}}
-    {{link-to "Poles" "poles" activeClass="font-bold"}}
-    {{link-to "Sync" "sync" activeClass="font-bold"}}
+    <LinkTo @route="scan" @activeClass="font-bold">Scan</LinkTo>
+    <LinkTo @route="poles" @activeClass="font-bold">Poles</LinkTo>
+    <LinkTo @route="sync" @activeClass="font-bold">Sync</LinkTo>
   </nav>
   <div class="flex-grow h-full">
     {{outlet}}

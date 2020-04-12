@@ -2,6 +2,6 @@
   {{did-insert (perform this.base64StringTask)}}
 >
   {{#if this.base64StringTask.lastSuccessful}}
-    <img src="data:{{@model.content_type}};base64,{{this.base64StringTask.lastSuccessful.value}}" alt="photo of the barcode">
+    <img src="data:{{@model.content_type}};base64,{{this.base64StringTask.lastSuccessful.value}}" alt="barcode">
   {{/if}}
 </div>

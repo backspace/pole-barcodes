@@ -3,7 +3,7 @@
 </div>
 <div class="w-100 flex">
   <Input @value={{this.destination}} class="border border-black flex-grow" />
-  <button onclick={{perform this.sync}} class="bg-black text-white text-sm p-2">
+  <button {{@on "click" (perform this.sync)}} type="button" class="bg-black text-white text-sm p-2">
     {{fa-icon "sync-alt" spin=this.sync.isRunning}}
   </button>
 </div>
@@ -13,7 +13,7 @@
   <ul>
     {{#each this.databases as |database|}}
       <li>
-        <a href="#" onclick={{action (mut this.destination) database}} data-database class="text-black text-xs">{{database}}</a>
+        <a href="#" {{@on "click" (mut this.destination) database}} data-database class="text-black text-xs">{{database}}</a>
       </li>
     {{/each}}
   </ul>
