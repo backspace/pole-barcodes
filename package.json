@@ -48,7 +48,7 @@
     "ember-pouch": "^6.0.0",
     "ember-prop-modifier": "^0.1.1",
     "ember-qunit": "^4.6.0",
-    "ember-ref-modifier": "^0.1.2",
+    "ember-ref-modifier": "^1.0.0",
     "ember-resolver": "^7.0.0",
     "ember-service-worker": "^0.7.2",
     "ember-service-worker-asset-cache": "^0.6.4",
