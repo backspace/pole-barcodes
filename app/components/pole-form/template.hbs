@@ -9,7 +9,7 @@
     <Input @value={{this.longitude}} class="border border-black" data-longitude />
   </label>
   <br>
-  <button {{@on "click" @locate}} type="button" class="bg-black text-white text-sm p-2" data-locate>
+  <button {{on "click" this.locate}} type="button" class="bg-black text-white text-sm p-2" data-locate>
     {{fa-icon "crosshairs"}}
   </button>
 
@@ -33,7 +33,7 @@
     <img src={{this.barcodePhoto}} alt="scanned barcode">
   {{/if}}
 
-  <BarcodeReader @onBarcodeCaptured={{mut this.barcodePhoto}} @onBarcodeRead={{@updateBarcode}} @onError={{mut this.error}} />
+  <BarcodeReader @onBarcodeCaptured={{mut this.barcodePhoto}} @onBarcodeRead={{this.updateBarcode}} @onError={{mut this.error}} />
 
-  <button {{@on "click" @save}} type="button" class="bg-black text-white text-sm p-2 w-full block" data-save>Save</button>
+  <button {{on "click" this.save}} type="button" class="bg-black text-white text-sm p-2 w-full block" data-save>Save</button>
 </div>

@@ -10,7 +10,7 @@
       </thead>
       <tbody>
         {{#each this.model as |pole|}}
-          <tr role="button" {{@on "click" (mut this.activePole) pole}}>
+          <tr role="button" {{on "click" (fn (mut this.activePole) pole)}}>
             <td>
               {{pole.barcode}}
             </td>
