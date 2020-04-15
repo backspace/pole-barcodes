@@ -5,10 +5,10 @@ import { setupApplicationTest } from '../helpers/application-tests';
 import PouchDB from 'pouchdb';
 import config from 'pole-barcodes/config/environment';
 
-module('Acceptance | sync', function(hooks) {
+module('Acceptance | sync', function (hooks) {
   setupApplicationTest(hooks);
 
-  test('can sync with another database and remember previous sync destinations', async function(assert) {
+  test('can sync with another database and remember previous sync destinations', async function (assert) {
     await new PouchDB(`destination-db`).destroy();
     await new PouchDB(config.emberPouch.localDb).destroy();
 
@@ -17,14 +17,8 @@ module('Acceptance | sync', function(hooks) {
       .lookup('controller:sync')
       .databases.addObject('another-sync');
 
-    await this.owner
-      .lookup('service:store')
-      .createRecord('pole')
-      .save();
-    await this.owner
-      .lookup('service:store')
-      .createRecord('pole')
-      .save();
+    await this.owner.lookup('service:store').createRecord('pole').save();
+    await this.owner.lookup('service:store').createRecord('pole').save();
 
     await visit('/sync');
 

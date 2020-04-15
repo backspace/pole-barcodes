@@ -34,7 +34,7 @@ export default class BarcodeReader extends Component {
       locate: true,
     };
 
-    Quagga.init(state, err => {
+    Quagga.init(state, (err) => {
       if (err) {
         this.error = err;
         return;
@@ -43,7 +43,7 @@ export default class BarcodeReader extends Component {
       Quagga.start();
     });
 
-    Quagga.onDetected(result => {
+    Quagga.onDetected((result) => {
       if (this.args.onBarcodeCaptured) {
         // FIXME restore barcode image storage
         //
@@ -61,7 +61,7 @@ export default class BarcodeReader extends Component {
       this.args.onBarcodeRead(result.codeResult.code);
     });
 
-    Quagga.onProcessed(function(result) {
+    Quagga.onProcessed(function (result) {
       var drawingCtx = Quagga.canvas.ctx.overlay,
         drawingCanvas = Quagga.canvas.dom.overlay;
 
@@ -74,10 +74,10 @@ export default class BarcodeReader extends Component {
             parseInt(drawingCanvas.getAttribute('height'))
           );
           result.boxes
-            .filter(function(box) {
+            .filter(function (box) {
               return box !== result.box;
             })
-            .forEach(function(box) {
+            .forEach(function (box) {
               Quagga.ImageDebug.drawPath(box, { x: 0, y: 1 }, drawingCtx, {
                 color: 'green',
                 lineWidth: 2,

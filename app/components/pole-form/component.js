@@ -14,7 +14,7 @@ export default class PoleForm extends Component {
 
   @action
   locate() {
-    navigator.geolocation.getCurrentPosition(position => {
+    navigator.geolocation.getCurrentPosition((position) => {
       this.latitude = position.coords.latitude;
       this.longitude = position.coords.longitude;
     });

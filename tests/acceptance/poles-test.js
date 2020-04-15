@@ -13,10 +13,10 @@ import { setupApplicationTest } from '../helpers/application-tests';
 import PouchDB from 'pouchdb';
 import config from 'pole-barcodes/config/environment';
 
-module('Acceptance | poles', function(hooks) {
+module('Acceptance | poles', function (hooks) {
   setupApplicationTest(hooks);
 
-  test('lists poles', async function(assert) {
+  test('lists poles', async function (assert) {
     await this.owner
       .lookup('service:store')
       .createRecord('pole', {
@@ -48,9 +48,9 @@ module('Acceptance | poles', function(hooks) {
     assert.dom('.leaflet-popup-content').hasText('0044019');
   });
 
-  test('creates and saves a new pole', async function(assert) {
+  test('creates and saves a new pole', async function (assert) {
     let getCurrentPosition = navigator.geolocation.getCurrentPosition;
-    navigator.geolocation.getCurrentPosition = callback => {
+    navigator.geolocation.getCurrentPosition = (callback) => {
       callback({ coords: { latitude: 1, longitude: -1 } });
     };
 
@@ -80,7 +80,7 @@ module('Acceptance | poles', function(hooks) {
     assert.dom('[data-barcode]').hasValue('');
   });
 
-  test('reads a barcode from the camera', async function(assert) {
+  test('reads a barcode from the camera', async function (assert) {
     await visit('/poles/new');
     await click('[data-read-from-camera]');
 

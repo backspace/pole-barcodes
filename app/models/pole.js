@@ -1,6 +1,5 @@
 /* global L */
-import DS from 'ember-data';
-const { Model, attr } = DS;
+import Model, { attr } from '@ember-data/model';
 import { computed } from '@ember/object';
 
 export default class PoleModel extends Model {
@@ -8,7 +7,7 @@ export default class PoleModel extends Model {
   @attr('number') latitude;
   @attr('number') longitude;
 
-  @computed('latitude', 'longitude', function() {
+  @computed('latitude', 'longitude', function () {
     if (this.latitude && this.longitude) {
       return L.latLng(this.latitude, this.longitude);
     } else {

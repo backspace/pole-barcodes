@@ -17,7 +17,7 @@ export default class SyncController extends Controller {
 
   version = config.APP.version;
 
-  @task(function*() {
+  @task(function* () {
     if (this.databases.includes(this.destination)) {
       this.databases.removeObject(this.destination);
     }

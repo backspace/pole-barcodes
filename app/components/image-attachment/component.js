@@ -11,7 +11,7 @@ export default class ImageAttachment extends Component {
     super(...arguments);
   }
 
-  @task(function*() {
+  @task(function* () {
     let model = this.args.model;
 
     let adapter = this.store.adapterFor(model.constructor.modelName);
