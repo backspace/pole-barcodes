@@ -4902,6 +4902,17 @@ ember-cli-clipboard@^0.8.1:
     ember-cli-htmlbars "^2.0.2"
     fastboot-transform "0.1.1"
 
+ember-cli-dependency-checker@^3.2.0:
+  version "3.2.0"
+  resolved "https://registry.yarnpkg.com/ember-cli-dependency-checker/-/ember-cli-dependency-checker-3.2.0.tgz#9202ad9e14d6fda33cffc22a11c343c2a8885330"
+  integrity sha512-dkSmcJ/jY/2ms/S6ph2jXSfOW5VfOpLfg5DFEbra0SaMNgYkNDFF1o0U4OdTsG37L5h/AXWNuVtnOa4TMabz9Q==
+  dependencies:
+    chalk "^2.3.0"
+    find-yarn-workspace-root "^1.1.0"
+    is-git-url "^1.0.0"
+    resolve "^1.5.0"
+    semver "^5.3.0"
+
 ember-cli-get-component-path-option@^1.0.0:
   version "1.0.0"
   resolved "https://registry.yarnpkg.com/ember-cli-get-component-path-option/-/ember-cli-get-component-path-option-1.0.0.tgz#0d7b595559e2f9050abed804f1d8eff1b08bc771"
@@ -5136,7 +5147,7 @@ ember-cli-version-checker@^4.1.0:
     semver "^6.3.0"
     silent-error "^1.1.1"
 
-ember-cli@^3.17.0:
+ember-cli@^3.18.0:
   version "3.17.0"
   resolved "https://registry.yarnpkg.com/ember-cli/-/ember-cli-3.17.0.tgz#d846027c01f1835c7903b6bff073c2a80885202e"
   integrity sha512-0GVer7AyV/g8hclbD64FmsNkULQ0N1pEQytB+utuJl8c6NFU4EUMJL7NyM/NRd7rzupMMR1jwzhxYTCY50ZRcg==
@@ -6417,7 +6428,7 @@ find-up@^4.1.0:
     locate-path "^5.0.0"
     path-exists "^4.0.0"
 
-find-yarn-workspace-root@^1.2.1:
+find-yarn-workspace-root@^1.1.0, find-yarn-workspace-root@^1.2.1:
   version "1.2.1"
   resolved "https://registry.yarnpkg.com/find-yarn-workspace-root/-/find-yarn-workspace-root-1.2.1.tgz#40eb8e6e7c2502ddfaa2577c176f221422f860db"
   integrity sha512-dVtfb0WuQG+8Ag2uWkbG79hOUzEsRrhBzgfn86g2sJPkzmcpGdghbNTfUKGTxymFrY/tLIodDzLoW9nOJ4FY8Q==
