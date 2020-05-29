@@ -4,15 +4,20 @@ import { setupApplicationTest } from '../helpers/application-tests';
 
 import PouchDB from 'pouchdb';
 import config from 'pole-barcodes/config/environment';
+import resetStorages from 'ember-local-storage/test-support/reset-storage';
 
 module('Acceptance | sync', function (hooks) {
   setupApplicationTest(hooks);
+
+  hooks.beforeEach(() => {
+    window.localStorage.clear();
+    resetStorages();
+  });
 
   test('can sync with another database and remember previous sync destinations', async function (assert) {
     await new PouchDB(`destination-db`).destroy();
     await new PouchDB(config.emberPouch.localDb).destroy();
 
-    await this.owner.lookup('controller:sync').databases.clear();
     await this.owner
       .lookup('controller:sync')
       .databases.addObject('another-sync');
