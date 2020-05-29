@@ -41,11 +41,11 @@ module('Acceptance | sync', function (hooks) {
     assert.dom('li:first-child [data-database]').hasText('destination-db');
 
     assert.dom('[data-push] [data-read]').hasText('2');
-    assert.dom('[data-push] [data-written').hasText('2');
+    assert.dom('[data-push] [data-written]').hasText('2');
     assert.dom('[data-push] [data-write-failures]').hasText('0');
 
     assert.dom('[data-pull] [data-read]').hasText('0');
-    assert.dom('[data-pull] [data-written').hasText('0');
+    assert.dom('[data-pull] [data-written]').hasText('0');
     assert.dom('[data-pull] [data-write-failures]').hasText('0');
 
     await click('li:last-child [data-database]');
@@ -80,11 +80,11 @@ module('Acceptance | sync', function (hooks) {
     assert.dom('[data-database]').doesNotExist();
 
     assert.dom('[data-push] [data-read]').hasText('1');
-    assert.dom('[data-push] [data-written').hasText('1');
+    assert.dom('[data-push] [data-written]').hasText('1');
     assert.dom('[data-push] [data-write-failures]').hasText('0');
 
     assert.dom('[data-pull] [data-read]').hasText('0');
-    assert.dom('[data-pull] [data-written').hasText('0');
+    assert.dom('[data-pull] [data-written]').hasText('0');
     assert.dom('[data-pull] [data-write-failures]').hasText('0');
   });
 });
