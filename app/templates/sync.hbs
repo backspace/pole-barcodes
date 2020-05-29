@@ -8,7 +8,7 @@
   </button>
 </div>
 
-{{#if this.databases}}
+{{#if (and this.databases this.settings.admin)}}
   <h2>Synced databases</h2>
   <ul>
     {{#each this.databases as |database|}}

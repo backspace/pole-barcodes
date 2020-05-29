@@ -12,6 +12,7 @@ import config from 'pole-barcodes/config/environment';
 export default class SyncController extends Controller {
   @tracked syncPromise = new Promise(() => {});
   @storageFor('databases') databases;
+  @storageFor('settings') settings;
 
   @service store;
 

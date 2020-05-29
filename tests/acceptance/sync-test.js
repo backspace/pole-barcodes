@@ -14,7 +14,7 @@ module('Acceptance | sync', function (hooks) {
     resetStorages();
   });
 
-  test('can sync with another database and remember previous sync destinations', async function (assert) {
+  test('can sync with another database and remember previous sync destinations for an admin', async function (assert) {
     await new PouchDB(`destination-db`).destroy();
     await new PouchDB(config.emberPouch.localDb).destroy();
 
@@ -25,7 +25,7 @@ module('Acceptance | sync', function (hooks) {
     await this.owner.lookup('service:store').createRecord('pole').save();
     await this.owner.lookup('service:store').createRecord('pole').save();
 
-    await visit('/sync');
+    await visit('/sync?admin=true');
 
     assert.dom('[data-database]').exists({ count: 1 });
     assert.dom('[data-database]').hasText('another-sync');
@@ -54,5 +54,37 @@ module('Acceptance | sync', function (hooks) {
     await click('button');
     assert.dom('[data-database]').exists({ count: 2 });
     assert.dom('li:first-child [data-database]').hasText('another-sync');
+  });
+
+  test('syncs but does not list sync destinations for a non-admin', async function (assert) {
+    await new PouchDB(`non-admin-db`).destroy();
+    await new PouchDB(config.emberPouch.localDb).destroy();
+
+    await this.owner
+      .lookup('controller:sync')
+      .databases.addObject('another-sync');
+
+    await this.owner.lookup('service:store').createRecord('pole').save();
+
+    await visit('/sync');
+
+    assert.dom('[data-database]').doesNotExist();
+
+    let syncController = this.owner.lookup('controller:sync');
+
+    await fillIn('input', 'non-admin-db');
+    await click('button');
+
+    await syncController.syncPromise;
+
+    assert.dom('[data-database]').doesNotExist();
+
+    assert.dom('[data-push] [data-read]').hasText('1');
+    assert.dom('[data-push] [data-written').hasText('1');
+    assert.dom('[data-push] [data-write-failures]').hasText('0');
+
+    assert.dom('[data-pull] [data-read]').hasText('0');
+    assert.dom('[data-pull] [data-written').hasText('0');
+    assert.dom('[data-pull] [data-write-failures]').hasText('0');
   });
 });
