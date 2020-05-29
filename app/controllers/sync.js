@@ -18,15 +18,29 @@ export default class SyncController extends Controller {
 
   version = config.APP.version;
 
+  get derivedDestination() {
+    // eslint-disable-next-line ember/no-get
+    return `${config.destinationSyncBase}${this.get('settings.destination')}`;
+  }
+
   @task(function* () {
-    if (this.databases.includes(this.destination)) {
-      this.databases.removeObject(this.destination);
+    let destination;
+
+    // eslint-disable-next-line ember/no-get
+    if (this.get('settings.admin')) {
+      if (this.databases.includes(this.destination)) {
+        this.databases.removeObject(this.destination);
+      }
+
+      this.databases.unshiftObject(this.destination);
+
+      destination = this.destination;
+    } else {
+      destination = this.derivedDestination;
     }
 
-    this.databases.unshiftObject(this.destination);
-
     let sourceDb = this.store.adapterFor('application').db;
-    let destinationDb = new PouchDB(this.destination);
+    let destinationDb = new PouchDB(destination);
 
     this.syncPromise = sourceDb.sync(destinationDb);
 

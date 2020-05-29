@@ -34,6 +34,7 @@ module.exports = function (environment) {
     emberPouch: {
       localDb: 'pole-barcodes-development',
     },
+    destinationSyncBase: '',
   };
 
   if (environment === 'development') {
@@ -57,6 +58,8 @@ module.exports = function (environment) {
 
     ENV['ember-local-storage'].namespace = 'pole-barcodes-test';
     ENV.emberPouch.localDb = 'pole-barcodes-test';
+
+    ENV.destinationSyncBase = 'testbase-';
   }
 
   if (environment === 'production') {
