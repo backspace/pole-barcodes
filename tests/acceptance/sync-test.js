@@ -88,4 +88,12 @@ module('Acceptance | sync', function (hooks) {
     assert.dom('[data-pull] [data-written]').hasText('0');
     assert.dom('[data-pull] [data-write-failures]').hasText('0');
   });
+
+  test('displays an error when there is no destination', async function (assert) {
+    await visit('/sync');
+
+    assert.dom('[data-database]').doesNotExist();
+    assert.dom('input').doesNotExist();
+    assert.dom('[data-error]').hasText('You have no database to sync to!');
+  });
 });

@@ -5,7 +5,11 @@
   {{#if this.settings.admin}}
     <Input @value={{this.destination}} class="border border-black flex-grow" />
   {{else}}
-    <Input @value={{this.derivedDestination}} class="border border-black flex-grow" disabled />
+    {{#if this.settings.destination}}
+      <Input @value={{this.derivedDestination}} class="border border-black flex-grow" disabled />
+    {{else}}
+      <span data-error>You have no database to sync to!</span>
+    {{/if}}
   {{/if}}
   <button {{on "click" (perform this.sync)}} type="button" class="bg-black text-white text-sm p-2">
     {{fa-icon "sync-alt" spin=this.sync.isRunning}}
