@@ -1,5 +1,5 @@
 import Controller from '@ember/controller';
 
 export default class ApplicationController extends Controller {
-  queryParams = ['admin', 'destination'];
+  queryParams = ['admin', 'auth', 'destination'];
 }

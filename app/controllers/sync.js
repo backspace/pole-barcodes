@@ -19,8 +19,13 @@ export default class SyncController extends Controller {
   version = config.APP.version;
 
   get derivedDestination() {
+    const base = config.destinationSyncBase.replace(
+      '__AUTH__',
+      // eslint-disable-next-line ember/no-get
+      this.get('settings.auth')
+    );
     // eslint-disable-next-line ember/no-get
-    return `${config.destinationSyncBase}${this.get('settings.destination')}`;
+    return `${base}${this.get('settings.destination')}`;
   }
 
   @task(function* () {

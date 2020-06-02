@@ -59,7 +59,7 @@ module.exports = function (environment) {
     ENV['ember-local-storage'].namespace = 'pole-barcodes-test';
     ENV.emberPouch.localDb = 'pole-barcodes-test';
 
-    ENV.destinationSyncBase = 'testbase-';
+    ENV.destinationSyncBase = 'testbase__AUTH__-';
   }
 
   if (environment === 'production') {

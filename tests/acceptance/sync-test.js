@@ -57,7 +57,7 @@ module('Acceptance | sync', function (hooks) {
   });
 
   test('syncs to a param-controlled destination for a non-admin', async function (assert) {
-    await new PouchDB(`testbase-remote`).destroy();
+    await new PouchDB(`testbaseUsername:Admin-remote`).destroy();
     await new PouchDB(config.emberPouch.localDb).destroy();
 
     await this.owner
@@ -66,11 +66,11 @@ module('Acceptance | sync', function (hooks) {
 
     await this.owner.lookup('service:store').createRecord('pole').save();
 
-    await visit('/sync?destination=remote');
+    await visit('/sync?destination=remote&auth=Username:Admin');
 
     assert.dom('[data-database]').doesNotExist();
     assert.dom('input').isDisabled;
-    assert.dom('input').hasValue('testbase-remote');
+    assert.dom('input').hasValue('testbaseUsername:Admin-remote');
 
     let syncController = this.owner.lookup('controller:sync');
 
